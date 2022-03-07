@@ -16,10 +16,7 @@ public class MoveForward : MonoBehaviour
     void FixedUpdate()
     {
         MoveForwardOnSpawn();
-        if (transform.position.z > topBound || transform.position.z < -topBound)
-        {
-            Destroy(gameObject);
-        }
+        
     }
 
     private void MoveForwardOnSpawn()

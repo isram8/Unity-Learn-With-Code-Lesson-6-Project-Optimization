@@ -6,13 +6,15 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float verticalInput;
     [SerializeField] float horizontalInput;
-    [SerializeField] public float speed;
+    [SerializeField] public float horsePower;
     [SerializeField] public float turnSpeed;
+    [SerializeField] GameObject centerOfMass;
     Rigidbody rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.centerOfMass = centerOfMass.transform.position;
     }
 
     // Update is called once per frame
@@ -27,8 +29,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         
-        rb.AddForce(Vector3.forward * verticalInput * speed, ForceMode.Acceleration);
-
+        rb.AddRelativeForce(Vector3.forward * verticalInput * horsePower);
+        
         transform.Rotate(Vector3.up, horizontalInput * turnSpeed * Time.deltaTime);
 
         
